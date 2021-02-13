@@ -8,16 +8,76 @@ clock = pygame.time.Clock()
 penguin = pygame.image.load("sokoban.2.0.py\images\penguin.png")
 penguin = pygame.transform.scale(penguin, (32,32))
 box = pygame.image.load("sokoban.2.0.py\images\\box.png")
+goal = pygame.image.load("sokoban.2.0.py\images\goal.JPG")
+goal = pygame.transform.scale(goal, (32,32))
+goal2 = goal
+goal3 = goal
 box = pygame.transform.scale(box, (32,32))
+box2 = box
+box2_hitormiss = box2.get_rect()
+box2_hitormiss.x = 200
+box2_hitormiss.y = 200
+box3 = box
+box3_hitormiss = box3.get_rect()
+box3_hitormiss.x = 300
+box3_hitormiss.y = 300
 box_hitormiss = box.get_rect()
 box_hitormiss.x = 100
 box_hitormiss.y = 100
+goal_hitormiss = goal.get_rect()
+goal2_hitormiss = goal2.get_rect()
+goal3_hitormiss = goal3.get_rect()
+goal_hitormiss.x = 123
+goal_hitormiss.y = 321
+goal2_hitormiss.x = 213
+goal2_hitormiss.y = 312
+goal3_hitormiss.x = 231
+goal3_hitormiss.y = 132
+penguin_hitormiss = penguin.get_rect()
 penguinx = 468
 penguiny = 250
 changex = 0
 changey = 0
 done = 0
 speed = 10
+
+goals = [goal_hitormiss,goal2_hitormiss,goal3_hitormiss]
+boxes = [box_hitormiss,box2_hitormiss,box3_hitormiss]
+def colision():
+    global penguinx, penguiny
+    index = penguin_hitormiss.collidelist(boxes)
+    print(index)
+    if index != -1:
+        boxes[index].x+=changex     
+        boxes[index].y+=changey
+        if boxes[index].x+box.get_width() > width:
+            boxes[index].x -= changex
+            boxes[index].y -= changey
+            penguinx-=changex
+            penguiny-=changey
+        if boxes[index].x < -1:
+            boxes[index].x -= changex
+            boxes[index].y -= changey
+            penguinx-=changex
+            penguiny-=changey
+        if boxes[index].y+box.get_height() > height:
+            boxes[index].x -= changex
+            boxes[index].y -= changey
+            penguinx-=changex
+            penguiny-=changey
+        if boxes[index].y < -1:
+            boxes[index].x -= changex
+            boxes[index].y -= changey
+            penguinx-=changex
+            penguiny-=changey
+        for i in boxes:
+            if boxes[index] != i:
+                if boxes[index].colliderect(i):
+                    boxes[index].x -= changex
+                    boxes[index].y -= changey
+                    penguinx-=changex
+                    penguiny-=changey
+
 
 
 
@@ -60,701 +120,15 @@ while not done:
         penguinx -= changex
         penguiny -= changey
     screen.fill(backgroundColor)
+    screen.blit(goal, (100,100))
     screen.blit(penguin,(penguinx,penguiny))
-    screen.blit(box, (box_hitormiss.x,box_hitormiss.y))
+    for x in boxes:
+        screen.blit(box, (x.x, x.y))
     pygame.display.flip()
     clock.tick(60)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    penguin_hitormiss.x = penguinx
+    penguin_hitormiss.y = penguiny
+    colision()
 
 
 
