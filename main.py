@@ -40,6 +40,9 @@ changex = 0
 changey = 0
 done = 0
 speed = 10
+fakeError = "Traceback (most recent call last):\n  \t File c:\\Users\Shadow\\Documents\\GitHub\\sokoban.2.0.py\\main.py, line 140, in <module>\n    \t\tclock.tick(60) \nKeyboardInterrupt"
+winMessage = "You acctually win"
+
 
 goals = [goal_hitormiss,goal2_hitormiss,goal3_hitormiss]
 boxes = [box_hitormiss,box2_hitormiss,box3_hitormiss]
@@ -48,7 +51,10 @@ def daskdajsldkjasldjalskdjalksjdlaksjdlkajsdlkajsdlkajsdlkjasdlkjaslkdjsaldjlka
     number = boxes[0].collidelist(goals)
     number2 = boxes[1].collidelist(goals)
     number3 = boxes[2].collidelist(goals)
-    print("MESSAGE", number, number2, number3)
+    print("message message message", number, number2, number3)
+    if number != -1 and number2 != -1 and number3 != -1:
+        print(fakeError)
+        exit()
 def colision():
     global penguinx, penguiny
     index = penguin_hitormiss.collidelist(boxes)
