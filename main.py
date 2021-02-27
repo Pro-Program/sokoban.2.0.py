@@ -43,6 +43,12 @@ speed = 10
 
 goals = [goal_hitormiss,goal2_hitormiss,goal3_hitormiss]
 boxes = [box_hitormiss,box2_hitormiss,box3_hitormiss]
+def daskdajsldkjasldjalskdjalksjdlaksjdlkajsdlkajsdlkajsdlkjasdlkjaslkdjsaldjlkasdjlasdjak():
+    
+    number = boxes[0].collidelist(goals)
+    number2 = boxes[1].collidelist(goals)
+    number3 = boxes[2].collidelist(goals)
+    print("MESSAGE", number, number2, number3)
 def colision():
     global penguinx, penguiny
     index = penguin_hitormiss.collidelist(boxes)
@@ -77,8 +83,6 @@ def colision():
                     boxes[index].y -= changey
                     penguinx-=changex
                     penguiny-=changey
-
-
 
 
 
@@ -120,8 +124,11 @@ while not done:
         penguinx -= changex
         penguiny -= changey
     screen.fill(backgroundColor)
-    screen.blit(goal, (100,100))
+    screen.blit(goal, (goal_hitormiss.x, goal_hitormiss.y))
+    screen.blit(goal2, (goal2_hitormiss.x,goal2_hitormiss.y))
+    screen.blit(goal3, (goal3_hitormiss.x, goal3_hitormiss.y))
     screen.blit(penguin,(penguinx,penguiny))
+    
     for x in boxes:
         screen.blit(box, (x.x, x.y))
     pygame.display.flip()
@@ -129,28 +136,7 @@ while not done:
     penguin_hitormiss.x = penguinx
     penguin_hitormiss.y = penguiny
     colision()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    daskdajsldkjasldjalskdjalksjdlaksjdlkajsdlkajsdlkajsdlkjasdlkjaslkdjsaldjlkasdjlasdjak()
 
 
 
